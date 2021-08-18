@@ -93,6 +93,7 @@ export class YoutubeApiService {
     //this.notificationService.showNotification(errMsg);
     return Promise.reject(errMsg);
   }
+  //https://developers.google.com/youtube/v3/docs/search/list
   res = {
         "kind": "youtube#searchListResponse",
         "etag": "\"q5k97EMVGxODeKcDgp8gnMu79wM/EkP6ScMYfT4xPyx9BIwzJc1IcsM\"",
