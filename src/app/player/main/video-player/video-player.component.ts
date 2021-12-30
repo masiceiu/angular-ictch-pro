@@ -38,13 +38,13 @@ export class VideoPlayerComponent implements AfterContentInit {
     this.youtubePlayer.currentVideoText.subscribe(event => this.currentVideoText = event || 'None');
   }
 
+  //https://drive.google.com/file/d/1-3O_0vamkRNKZf1oed7HBFKm2fNMcw-Z/view?usp=sharing
   ngAfterContentInit() {
     let doc = window.document;
     let playerApi = doc.createElement('script');
     playerApi.type = 'text/javascript';
     playerApi.src = 'https://www.youtube.com/iframe_api';
     doc.body.appendChild(playerApi);
-
     this.youtubePlayer.createPlayer();
   }
 
