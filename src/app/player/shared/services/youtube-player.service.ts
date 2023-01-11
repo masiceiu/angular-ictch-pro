@@ -80,7 +80,7 @@ export class YoutubePlayerService {
   }
 
   resizePlayer(width: number, height: number) {
-    this.yt_player.setSize(width, height);
+    //this.yt_player.setSize(width, height);
   }
 
   getShuffled(index: number, max: number): number {

@@ -1,4 +1,4 @@
-import { Component, Input, AfterContentInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, AfterContentInit, OnInit, Output, EventEmitter } from '@angular/core';
 import { YoutubePlayerService } from '../../shared/services/youtube-player.service';
 import { NotificationService } from '../../shared/services/notification.service';
 import { BrowserNotificationService } from '../../shared/services/browser-notification.service';
@@ -9,7 +9,7 @@ import { BrowserNotificationService } from '../../shared/services/browser-notifi
   styleUrls: ['video-player.component.css']
 })
 
-export class VideoPlayerComponent implements AfterContentInit {
+export class VideoPlayerComponent implements OnInit, AfterContentInit {
   public minPlayer = true;
   public superMinPlayer = false;
   public playingEvent = 'pause';
@@ -38,6 +38,12 @@ export class VideoPlayerComponent implements AfterContentInit {
     this.youtubePlayer.currentVideoText.subscribe(event => this.currentVideoText = event || 'None');
   }
 
+  innerWidth: any;
+  innerHeight: any;
+  ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
+  }
   //https://drive.google.com/file/d/1-3O_0vamkRNKZf1oed7HBFKm2fNMcw-Z/view?usp=sharing
   ngAfterContentInit() {
     let doc = window.document;
@@ -52,8 +58,10 @@ export class VideoPlayerComponent implements AfterContentInit {
     this.minPlayer = false;
     this.superMinPlayer = false;
     this.fullscreenActive = !this.fullscreenActive;
-    let width = this.fullscreenActive ? window.innerWidth - 70 : 440;
-    let height = this.fullscreenActive ? window.innerHeight - 120 : 250;
+    let width = this.fullscreenActive ? this.innerWidth - 70 : 440;
+    let height = this.fullscreenActive ? this.innerHeight - 120 : 250;
+    //let width = this.fullscreenActive ? window.innerWidth - 70 : 440;
+    //let height = this.fullscreenActive ? window.innerHeight - 120 : 250;
     this.youtubePlayer.resizePlayer(width, height);
   }
 
