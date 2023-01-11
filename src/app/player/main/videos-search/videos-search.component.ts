@@ -15,10 +15,7 @@ export class VideosSearchComponent {
   @Input() loadingInProgress;
 
   private last_search: string;
-
-  public searchForm = this.fb.group({
-    query: ['', Validators.required]
-  });
+  public searchForm:any
 
   constructor(
     public fb: FormBuilder,
@@ -29,6 +26,9 @@ export class VideosSearchComponent {
       .then(data => {
         this.videosUpdated.emit(data);
       })
+      this.searchForm = this.fb.group({
+        query: ['', Validators.required]
+      });
   }
 
   doSearch(event): void {
